@@ -4,7 +4,8 @@ from django.test import TestCase
 from dummy.models import Dummy
 
 
-class TestDummyBulkCreation(TestCase):
+class TestDummyDecimalFields(TestCase):
+
     def _assertBulkCreateWorks(self, objs, batch_size=None):
         """
         Create records with bulk_create, watching for DatabaseErrors.
@@ -34,6 +35,11 @@ class TestDummyBulkCreation(TestCase):
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
+    def test_both_fields_set(self):
+        objs = [Dummy(a=u'123.45', b=1), Dummy(a=44.42, b=u'345345345')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
     def test_different_fields_set(self):
         objs = [Dummy(a=u'123.45'), Dummy(b=u'94324.35')]
         self._assertBulkCreateWorks(objs)
@@ -49,4 +55,8 @@ class TestDummyBulkCreation(TestCase):
     def test_different_fields_set_with_batch_size_35(self):
         objs = [Dummy(a=u'123.45'), Dummy(b=u'94324.35')]
         self._assertBulkCreateWorks(objs, batch_size=35)
+
+    def test_one_field_set(self):
+        objs = [Dummy(a=u'123.45'), Dummy()]
+        self._assertBulkCreateWorks(objs)
 
