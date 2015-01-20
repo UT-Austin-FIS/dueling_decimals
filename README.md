@@ -29,19 +29,24 @@ $ python manage.py test dummy
 ```
 
 ### virtualenv
-(This is untested...)
-
 You need an Oracle installation on your code-executing machine to make
 connections to your Oracle database. I'm going to use
 [Oracle Instant Client](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html).
-Find, download, and install the appropriate version for your host architecture
-and database version. Follow the installation instructions, including setting
-up `ORACLE_HOME` and `LD_LIBRARY_PATH`. If you need to know what version of
+Note that this requires creating an account on oracle.com and agreeing to their
+license terms.
+
+Choose your host architecture on the page linked above, agree to the license
+terms if you dare, and find the Basic Lite zip file that corresponds to the
+version of Oracle you're connecting to. If you need to know what version of
 Oracle you're connecting to, try running this SQL statement:
 ```
 SELECT * FROM V$VERSION;
 ```
+Follow the installation instructions at the bottom of listing page, including
+setting up `ORACLE_HOME` and `LD_LIBRARY_PATH`.
 
+Now, you should be able to install `cx_Oracle` as part of the overall
+installation.
 ```
 $ git clone github.com/UT-Austin-FIS/dueling_decimals.git
 $ cp dueling_decimals/{_local_settings_template.py,local_settings.py}
