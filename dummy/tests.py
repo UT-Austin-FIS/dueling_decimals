@@ -31,12 +31,12 @@ class TestDummyDecimalFields(TestCase):
             self._assertBulkCreateWorks(objs, batch_size=n)
 
     def test_same_field_set(self):
-        objs = [Dummy(a=u'123.45'), Dummy(a=44.42)]
+        objs = [Dummy(a=u'123.45'), Dummy(a=u'44.42')]
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
     def test_both_fields_set(self):
-        objs = [Dummy(a=u'123.45', b=1), Dummy(a=44.42, b=u'345345345')]
+        objs = [Dummy(a=u'123.45', b=1), Dummy(a=u'44.42', b=u'345345345')]
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
