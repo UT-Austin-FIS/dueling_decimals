@@ -3,13 +3,29 @@ Minimum working example of ORA-12704 errors encountered while bulk-creating
 nullable Django Decimal fields.
 
 ## Failing Tests:
-Under Django 1.7.1 and cx_Oracle 5.1.3:
+The problem that spawned this repo is that the following tests fails under
+Django 1.7.1 and cx_Oracle 5.1.3:
 * `test_one_field_set`
 * `test_different_fields_set_with_batch_size_35`
 * `test_different_fields_set_with_batch_size_2`
 * `test_different_fields_set`
 
-## Setup: 
+### Test failures by Django version
+Number of passing tests by version of Django, all with cx_Oracle==5.1.3, since
+that's the only one available from PyPI.
+
+| Django  | tests |
+| ------  | ----- |
+| 1.4.12  | 8/8   |
+| 1.4.18  | 8/8   |
+| 1.5.0   | 4/8   |
+| 1.5.12  | 4/8   |
+| 1.6.10  | 4/8   |
+| 1.7.1   | 4/8   |
+
+So, it looks like the problem lies in a change made between 1.4 and 1.5...
+
+## Setup:
 Create a new Oracle 11gR2 schema to run tests against. Installing cx_Oracle
 requires a local Oracle installation, which the PyPE 27.7.0 VM provides.
 
