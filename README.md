@@ -3,7 +3,7 @@ Minimum working example of ORA-12704 errors encountered while bulk-creating
 nullable Django Decimal fields.
 
 ## Failing Tests:
-
+Under Django 1.7.1 and cx_Oracle 5.1.3:
 * `test_one_field_set`
 * `test_different_fields_set_with_batch_size_35`
 * `test_different_fields_set_with_batch_size_2`
@@ -35,25 +35,27 @@ Note that this requires creating an account on oracle.com and agreeing to their
 license terms.
 
 Choose your host architecture on the page linked above, agree to the license
-terms if you dare, and find the Basic Lite zip file that corresponds to the
-version of Oracle you're connecting to. If you need to know what version of
-Oracle you're connecting to, try running this SQL statement:
+terms if you dare, and download the "Basic" and "SDK" zip files that correspond
+to the version of Oracle you're connecting to. If you need to know what version
+of Oracle you're connecting to, try running this SQL statement:
 ```
 SELECT * FROM V$VERSION;
 ```
 Follow the installation instructions at the bottom of listing page, including
-setting up `ORACLE_HOME` and `LD_LIBRARY_PATH`.
+creating symlinks and setting up `ORACLE_HOME` and `LD_LIBRARY_PATH`.
 
-This might also help: https://gist.github.com/hangtwenty/5547377
+This might also help: https://gist.github.com/hangtwenty/5547377, though I
+didn't need it, other than to know that the "Basic" and "SDK" downloads are
+both needed.
 
 Now, you should be able to install `cx_Oracle` as part of the overall
-installation.
+installation:
 ```
 $ git clone github.com/UT-Austin-FIS/dueling_decimals.git
 $ cp dueling_decimals/{_local_settings_template.py,local_settings.py}
 $ nano dueling_decimals/local_settings.py  # update DATABASES
 $ virtualenv venv  # python2.7
 $ source venv/bin/activate
-(venv) $ pip install -r requirements.txt  # cx_Oracle requires an Oracle installation :/
+(venv) $ pip install -r requirements.txt
 (venv) $ ./manage.py test dummy
 ```
