@@ -30,13 +30,36 @@ class TestDummyDecimalFields(TestCase):
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
-    def test_same_field_set(self):
+    def test_same_first_field_set(self):
         objs = [Dummy(a=u'123.45'), Dummy(a=u'44.42')]
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
-    def test_both_fields_set(self):
+    def test_same_second_field_set(self):
+        objs = [Dummy(b=u'123.45'), Dummy(b=u'44.42')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
+    def test_same_third_field_set(self):
+        objs = [Dummy(c=u'123.45'), Dummy(c=u'44.42')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
+    def test_same_first_and_third_field_set(self):
+        objs = [Dummy(a=u'2.0', c=u'123.45'), Dummy(a=u'4.0', c=u'44.42')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
+    def test_two_fields_set(self):
         objs = [Dummy(a=u'123.45', b=1), Dummy(a=u'44.42', b=u'345345345')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
+    def test_all_fields_set(self):
+        objs = [
+            Dummy(a=u'123.45', b=1, c=334),
+            Dummy(a=u'44.42', b=u'345345345', c=0),
+        ]
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 

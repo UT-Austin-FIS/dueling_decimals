@@ -15,3 +15,10 @@ class Dummy(models.Model):
         blank=True,
         null=True,
     )
+
+    c = models.DecimalField(
+        max_digits=15,
+        decimal_places=2,
+        blank=True,
+        null=True,
+    )
