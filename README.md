@@ -14,15 +14,15 @@ Django 1.7.1 and cx_Oracle 5.1.3:
 Number of passing tests by version of Django, all with cx_Oracle==5.1.3, since
 that's the only one available from PyPI.
 
-| python | Django  | tests |
-| ------ | ------  | ----- |
-| 2.7.9  | 1.4.12  | 8/8   |
-| 2.7.9  | 1.4.18  | 8/8   |
-| 2.7.9  | 1.5.0   | 4/8   |
-| 2.7.9  | 1.5.12  | 4/8   |
-| 2.7.9  | 1.6.10  | 4/8   |
-| 2.7.9  | 1.7.1   | 4/8   |
-| 3.4.2  | 1.7.1   | 8/8   |
+| python | Django  | tests | convert_unicode |
+| ------ | ------  | ----- | --------------- |
+| 2.7.9  | 1.4.12  | 8/8   | smart_str |
+| 2.7.9  | 1.4.18  | 8/8   | smart_str |
+| 2.7.9  | 1.5.0   | 4/8   | force_text |
+| 2.7.9  | 1.5.12  | 4/8   | |
+| 2.7.9  | 1.6.10  | 4/8   | |
+| 2.7.9  | 1.7.1   | 4/8   | force_text |
+| 3.4.2  | 1.7.1   | 8/8   | force_text |
 
 So, it looks like the problem lies in a change made between 1.4 and 1.5...
 
