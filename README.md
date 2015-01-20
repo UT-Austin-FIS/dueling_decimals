@@ -2,7 +2,6 @@
 Minimum working example of ORA-12704 errors encountered while bulk-creating
 nullable Django Decimal fields.
 
-
 ## Failing Tests:
 
 * `test_one_field_set`
@@ -44,6 +43,8 @@ SELECT * FROM V$VERSION;
 ```
 Follow the installation instructions at the bottom of listing page, including
 setting up `ORACLE_HOME` and `LD_LIBRARY_PATH`.
+
+This might also help: https://gist.github.com/hangtwenty/5547377
 
 Now, you should be able to install `cx_Oracle` as part of the overall
 installation.
