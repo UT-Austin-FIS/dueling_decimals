@@ -1,4 +1,5 @@
 venv/
+venv3/
 dueling_decimals/local_settings.py
 *.swp
 
