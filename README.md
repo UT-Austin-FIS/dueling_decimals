@@ -5,24 +5,25 @@ nullable Django Decimal fields.
 ## Failing Tests:
 The problem that spawned this repo is that the following tests fails under
 Django 1.7.1 and cx_Oracle 5.1.3:
-* `test_one_field_set`
-* `test_different_fields_set_with_batch_size_35`
+* `test_different_fields_set_decimal`
+* `test_different_fields_set_unicode`
 * `test_different_fields_set_with_batch_size_2`
-* `test_different_fields_set`
+* `test_different_fields_set_with_batch_size_35`
+* `test_one_field_set`
 
 ### Test failures by Django version
 Number of passing tests by version of Django, all with cx_Oracle==5.1.3, since
 that's the only one available from PyPI.
 
-| python | Django  | tests | convert_unicode |
-| ------ | ------  | ----- | --------------- |
-| 2.7.9  | 1.4.12  | 8/8   | smart_str |
-| 2.7.9  | 1.4.18  | 8/8   | smart_str |
-| 2.7.9  | 1.5.0   | 4/8   | force_text |
-| 2.7.9  | 1.5.12  | 4/8   | |
-| 2.7.9  | 1.6.10  | 4/8   | |
-| 2.7.9  | 1.7.1   | 4/8   | force_text |
-| 3.4.2  | 1.7.1   | 8/8   | force_text |
+| python | Django | tests   | convert_unicode |
+| ------ | ------ | -----   | --------------- |
+| 2.7.9  | 1.4.12 | 14/14   | smart_str       |
+| 2.7.9  | 1.4.18 | 14/14   | smart_str       |
+| 2.7.9  | 1.5.0  |  9/14   | force_text      |
+| 2.7.9  | 1.5.12 |  9/14   |                 |
+| 2.7.9  | 1.6.10 |  9/14   |                 |
+| 2.7.9  | 1.7.1  |  9/14   | force_text      |
+| 3.4.2  | 1.7.1  | 14/14   | force_text      |
 
 So, it looks like the problem lies in a change made between 1.4 and 1.5...
 

@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import DatabaseError
 from django.test import TestCase
 
@@ -30,8 +32,13 @@ class TestDummyDecimalFields(TestCase):
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
-    def test_same_first_field_set(self):
+    def test_same_first_field_set_unicode(self):
         objs = [Dummy(a=u'123.45'), Dummy(a=u'44.42')]
+        for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
+            self._assertBulkCreateWorks(objs, batch_size=n)
+
+    def test_same_first_field_set_decimal(self):
+        objs = [Dummy(a=Decimal(u'123.45')), Dummy(a=Decimal(u'44.42'))]
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
@@ -63,8 +70,12 @@ class TestDummyDecimalFields(TestCase):
         for n in [1, 2, 3, 4, 10, 20, 50, 100, 1000]:
             self._assertBulkCreateWorks(objs, batch_size=n)
 
-    def test_different_fields_set(self):
+    def test_different_fields_set_unicode(self):
         objs = [Dummy(a=u'123.45'), Dummy(b=u'94324.35')]
+        self._assertBulkCreateWorks(objs)
+
+    def test_different_fields_set_decimal(self):
+        objs = [Dummy(a=Decimal(u'123.45')), Dummy(b=Decimal(u'94324.35'))]
         self._assertBulkCreateWorks(objs)
 
     def test_different_fields_set_with_batch_size_1(self):
