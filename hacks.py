@@ -1,5 +1,6 @@
-from django.utils.encoding import force_bytes
 import django.db.backends.oracle.base
+from django.utils import six
+from django.utils.encoding import force_bytes
 
 
 def setup_hack_for_ora_12704_errors_on_bulk_create():
@@ -32,8 +33,14 @@ class ConvertUnicodeFaker(object):
         self._original = django.db.backends.oracle.base.convert_unicode
 
     def __enter__(self):
-        django.db.backends.oracle.base.convert_unicode = force_bytes
+        if six.PY2:
+            django.db.backends.oracle.base.convert_unicode = force_bytes
+        else:
+            pass
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        django.db.backends.oracle.base.convert_unicode = self._original
+        if six.PY2:
+            django.db.backends.oracle.base.convert_unicode = self._original
+        else:
+            pass
 
