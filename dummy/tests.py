@@ -94,3 +94,8 @@ class TestDummyDecimalFields(TestCase):
         objs = [Dummy(a=u'123.45'), Dummy()]
         self._assertBulkCreateWorks(objs)
 
+    def test_one_field_set_with_hack(self):
+        from hacks import ConvertUnicodeFaker
+        with ConvertUnicodeFaker():
+            objs = [Dummy(a=u'123.45'), Dummy()]
+            self._assertBulkCreateWorks(objs)
