@@ -3,8 +3,8 @@ Minimum working example of ORA-12704 errors encountered while bulk-creating
 nullable Django Decimal fields.
 
 ## Failing Tests:
-The problem that spawned this repo is that the following tests fails under
-Django 1.7.1 and cx_Oracle 5.1.3:
+The problem that spawned this repo is that the following tests failed under
+Django 1.7.1 and cx_Oracle 5.1.3. They now pass, due to how the test is structured (if ORA-12704 was expected and raised, the test passes).
 * `test_different_fields_set_decimal`
 * `test_different_fields_set_unicode`
 * `test_different_fields_set_with_batch_size_2`
